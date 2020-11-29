@@ -18,10 +18,7 @@ jobs:
       image: ubuntu:xenial
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: build and test
+      - name: apt packages
         run: |
 
           msg="[+] STARTING"
@@ -44,10 +41,20 @@ jobs:
 
           add-apt-repository ppa:git-core/ppa
           apt-get update
-          apt-get install git
-
+          apt-get install -y --no-install-recommends git
 
           msg="[+] INSTALLED APT PACKAGES"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: build and test
+        run: |
+
+          msg="[+] STARTING"
           printf "%s\n" "${msg}"
           printf "%s\n" "${msg}" >&2
 
