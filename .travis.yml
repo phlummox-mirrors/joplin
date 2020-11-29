@@ -62,6 +62,10 @@ script:
     # Install tools
     npm install
 
+    msg="[+] DONE NPM INSTALL"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
     # Run test units.
     # Only do it for pull requests because Travis randomly fails to run them
     # and that would break the desktop release.
@@ -73,6 +77,11 @@ script:
       fi
     fi
 
+    msg="[+] DONE NPM RUN TEST-CI"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
     # Run linter for pull requests only - this is so that
     # bypassing eslint is allowed for urgent fixes.
     if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
@@ -82,6 +91,12 @@ script:
         echo warning test res was $testResult
       fi
     fi
+
+    msg="[+] DONE NPM RUN LINTER-CI"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
 
     # Validate translations - this is needed as some users manually
     # edit .po files (and often make mistakes) instead of using a proper
@@ -96,6 +111,12 @@ script:
       fi
     fi
 
+    msg="[+] DONE VALIDATE TRANS"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
+
     # Find out if we should run the build or not. Electron-builder gets stuck when
     # building PRs so we disable it in this case. The Linux build should provide
     # enough info if the app builds or not.
@@ -109,3 +130,14 @@ script:
     # Prepare the Electron app and build it
     cd packages/app-desktop
     USE_HARD_LINKS=false npm run dist
+
+    res=$?
+
+    echo RES OF NPM RUN DIST WAS $res
+
+    msg="[+] DONE NPM RUN DIST"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
+    true
