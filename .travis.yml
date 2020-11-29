@@ -189,5 +189,6 @@ script:
     printf "%s\n" "${msg}"
     printf "%s\n" "${msg}" >&2
 
+    grep '^' /home/travis/.npm/_logs/*
 
     true
