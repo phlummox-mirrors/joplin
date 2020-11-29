@@ -80,13 +80,17 @@ jobs:
 
       - name: build and test
         run: |
+          set -ex
 
           msg="[+] STARTING"
           printf "%s\n" "${msg}"
           printf "%s\n" "${msg}" >&2
 
+          npm --version
+          node --version
+          yarn --version
 
-          export ELECTRON_CACHE=$HOME/.cache/electro
+          export ELECTRON_CACHE=$HOME/.cache/electron
           export ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
           npm install
