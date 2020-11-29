@@ -45,6 +45,13 @@ before_install:
 
   # libsecret-1-dev is required for keytar - https://github.com/atom/node-keytar
   - |
+
+    dpkg --get-selections | grep -i node
+    dpkg --get-selections | grep -i npm
+
+    which npm
+    which node
+
     sudo apt-get update
     sudo apt-get install -y  --no-install-recommends \
       bzip2       \
