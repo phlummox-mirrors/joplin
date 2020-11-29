@@ -1,3 +1,5 @@
+# vim: hlsearch ts=2 sw=2 et :
+
 name: build-and-test
 
 # Run this workflow every time a new commit pushed to your repository
@@ -21,12 +23,16 @@ jobs:
 
       - name: build and test
         run: |
-          echo "A little less ${message}"
-          echo "A little more action"
+
+          msg="[+] STARTING"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
 
           apt-get clean && \
           apt-get update && \
           apt-get install -y --no-install-recommends \
+            apt-transport-https \
             bzip2       \
             ca-certificates \
             curl        \
@@ -37,7 +43,16 @@ jobs:
             time        \
             wget
 
+          msg="[+] INSTALLED APT PACKAGES"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
+
           curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - \ && sudo apt install nodejs
+
+          msg="[+] INSTALLED NODE"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
 
 
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
@@ -47,11 +62,28 @@ jobs:
             &&  sudo apt-get install -y gettext \
             &&  sudo apt-get install -y libsecret-1-dev
 
+
+          msg="[+] INSTALLED YARN"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
+
           export ELECTRON_CACHE=$HOME/.cache/electro
           export ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-          npm install \
-            &&  cd packages/app-desktop \
+          npm install
+
+          msg="[+] DONE INSTALL"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
+
+          cd packages/app-desktop \
             &&  USE_HARD_LINKS=false npm run dist
+
+          msg="[+] DONE BUILD"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
 
 
