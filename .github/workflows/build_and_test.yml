@@ -48,17 +48,6 @@ jobs:
           printf "%s\n" "${msg}" >&2
 
 
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: build and test
-        run: |
-
-          msg="[+] STARTING"
-          printf "%s\n" "${msg}"
-          printf "%s\n" "${msg}" >&2
-
-
           curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - \
             && sudo apt install -y --no-install-recommends nodejs
 
@@ -81,6 +70,18 @@ jobs:
 
 
           msg="[+] INSTALLED YARN"
+          printf "%s\n" "${msg}"
+          printf "%s\n" "${msg}" >&2
+
+
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: build and test
+        run: |
+
+          msg="[+] STARTING"
           printf "%s\n" "${msg}"
           printf "%s\n" "${msg}" >&2
 
