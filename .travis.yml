@@ -52,6 +52,23 @@ before_install:
     which npm
     which node
 
+    sudo rm -rf ~/.nvm
+
+    msg="[+] DONE NVM REMOVE"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+    which npm
+    which node
+
+    msg="[+] DONE NEW PATH CHECK"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
+
+
+
     sudo apt-get update
     sudo apt-get install -y  --no-install-recommends \
       bzip2       \
