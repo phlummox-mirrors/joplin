@@ -36,12 +36,16 @@ jobs:
             bzip2       \
             ca-certificates \
             curl        \
-            git         \
             make        \
             software-properties-common \
             sudo        \
             time        \
             wget
+
+          add-apt-repository ppa:git-core/ppa
+          apt-get update
+          apt-get install git
+
 
           msg="[+] INSTALLED APT PACKAGES"
           printf "%s\n" "${msg}"
