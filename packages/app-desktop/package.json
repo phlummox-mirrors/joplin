@@ -1,5 +1,5 @@
 {
-  "name": "@joplin/app-desktop",
+  "name": "joplin-desktop",
   "version": "1.4.18",
   "description": "Joplin for Desktop",
   "main": "main.js",
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/laurent22/joplin.git"
   },
-  "author": "Laurent Cozic",
+  "author": "Laurent Cozic <laurent@localhost>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/laurent22/joplin/issues"
@@ -81,7 +81,7 @@
       "desktop": {
         "Icon": "joplin"
       },
-      "target": "AppImage"
+      "target": "deb"
     },
     "dmg": {
       "writeUpdateInfo": false
