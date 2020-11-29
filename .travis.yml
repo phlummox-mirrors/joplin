@@ -45,9 +45,31 @@ before_install:
 
   # libsecret-1-dev is required for keytar - https://github.com/atom/node-keytar
   - |
+    apt-get update
+    apt-get install -y  --no-install-recommends \
+      bzip2       \
+      ca-certificates \
+      clang \
+      curl        \
+      git         \
+      make        \
+      python-software-properties \
+      software-properties-common \
+      wget \
+      python-pip \
+      python3-pip
+
+    msg="[+] DONE APT PACKAGES INSTALL"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
+
+
 
     curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - &&  sudo apt install nodejs
 
+    msg="[+] DONE NODEJS INSTALL"
+    printf "%s\n" "${msg}"
+    printf "%s\n" "${msg}" >&2
 
     #if [ "$TRAVIS_OS_NAME" == "osx" ]; then
     #  HOMEBREW_NO_AUTO_UPDATE=1 brew install yarn
